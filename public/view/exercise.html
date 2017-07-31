@@ -1,0 +1,60 @@
+<div id="designView" ng-init="DC.init()" ng-cloak>
+	<md-toolbar md-scroll-shrink ng-if="true">
+    <div class="md-toolbar-tools">
+      <h3>
+        <span>EXERCISE</span>
+      </h3>
+    </div>
+  </md-toolbar>
+  <div class="designContainer">
+    <div flex="100" flex-gt-sm="50" layout="column">
+      <div>
+        <!--
+          In IE, we cannot apply flex directly to <fieldset>
+          @see https://github.com/philipwalton/flexbugs#9-some-html-elements-cant-be-flex-containers
+        -->
+        <fieldset class="exerciseTheme" >
+          <legend>Select Exercise Type</legend>
+          <div layout="row" layout-wrap flex>
+            <div flex="50" ng-repeat="item in types">
+              <md-checkbox ng-checked="exists(item, selectedType)" ng-click="selectType(item, selectedType)">
+                {{ item.name }} <!-- <span ng-if="exists(item, selectedType)">selected</span> -->
+              </md-checkbox>
+            </div>
+          
+            <div flex="100">
+              <md-input-container>
+    		        <label>새로운 운동 타입 명</label>
+    		        <input ng-model="newExerciseType">
+    		      </md-input-container>
+  		        <md-button class="md-raised" ng-click="DC.addNewTheme()" flex="30"> 추가하기 </md-button>
+            </div>
+          </div>
+        </fieldset>
+
+        <br />
+        <br /> 
+
+        <fieldset class="exerciseTheme" ng-repeat="item in selectedType">
+          <legend> {{ item.name }} 선택</legend>
+          <div layout="row" layout-wrap flex>
+            <div flex="100" ng-repeat="item in exercises[item.key]">
+              <md-checkbox ng-checked="exists(item, selectedExercise)" ng-click="selectExercise(item, selectedExercise)">
+                {{ item.name }}
+              </md-checkbox>
+            </div>
+          </div>
+
+          <md-input-container>
+		        <label>새로운 운동 명</label>
+		        <input ng-model="newExercise[item.key]">
+		      </md-input-container>
+
+		      <md-button class="md-raised" ng-click="DC.addNewExercise(item.key)"> 추가하기 </md-button>
+        </fieldset>
+      </div>
+    </div>
+
+    <md-button class="md-raised startBtn" ng-click="DC.startExercise()"> 운동시작 </md-button>
+  </div>
+</div>

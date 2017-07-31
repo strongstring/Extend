@@ -1,0 +1,38 @@
+<div id="adhocView" ng-init="AC.init()" ng-cloak>
+	<md-toolbar md-scroll-shrink ng-if="true">
+    <div class="md-toolbar-tools">
+      <h3 class="btn">
+        <span>ADHOC Service</span>
+      </h3>
+      <h3 class="loginBtn btn" ng-click="AC.login()" ng-if="!isLogined">
+        <span>Login</span>
+      </h3>
+      <h3 class="loginBtn btn" ng-click="AC.createApp()" ng-if="isLogined" style="right: 100px;">
+        <span>New App</span>
+      </h3>
+      <h3 class="loginBtn btn" ng-click="AC.logout()" ng-if="isLogined">
+        <span>Logout</span>
+      </h3>
+    </div>
+  </md-toolbar>
+  <md-content flex>
+	  <ul id="serviceBoard">
+      <li ng-repeat="app in apps">
+        <a ui-sref="page({appKey : app.key})">
+        <div class="imageSpace">
+          <img ng-src="{{app.imgPath}}" />
+        </div>
+        <div class="comment">
+          <div class="app_name">
+            <p>{{app.name}}</p>
+          </div>
+          <div class="latest_version">
+            <p style="margin-top:20px"> iOS : {{app.ios.version}}</p>
+            <p style="margin-top:20px"> Android : {{app.android.version}}</p>
+          </div>
+        </div>
+        </a>
+      </li>
+	  </ul>
+	</md-content>
+</div>

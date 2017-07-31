@@ -1,0 +1,29 @@
+<div id="upload" ng-init="UC.init()" ng-cloak>
+	<md-toolbar md-scroll-shrink ng-if="true">
+    <div class="md-toolbar-tools">
+      <h3 class="backbtn btn" ui-sref="home" ui-sref="active">
+        <span>BACK</span>
+      </h3>
+    </div>
+  </md-toolbar>
+  <md-content flex>
+    <div class="inputContainer">
+      <md-input-container>
+        <label>Version</label>
+        <input required ng-model="newVersion.version">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Option</label>
+        <input ng-model="newVersion.option">
+      </md-input-container>
+
+      <div class="version">
+        <label>Binary version</label>
+        <input ng-model="newVersion.binary" type="file" id="new-version-binary" onchange="angular.element(this).scope().updadeBinary(this)">
+      </div>
+
+      <md-button md-no-ink class="md-primary" ng-click="UC.uploadVersion()" ng-disabled="!(newVersion.version.length > 0 && newVersion.isReady)">버전 업데이트</md-button>
+    </div>
+  </md-content>
+</div>

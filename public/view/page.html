@@ -1,0 +1,72 @@
+<div id="pageView" ng-init="PC.init()" ng-cloak>
+	<div id="loading-backdrop" ng-show="isloading">
+		<md-progress-circular id="loading" ng-disabled="!isloading" class="md-hue-3" md-diameter="80"></md-progress-circular>
+	</div>
+	<md-toolbar md-scroll-shrink ng-if="true">
+    <div class="md-toolbar-tools">
+      <h3 class="backbtn btn" ui-sref="home" ui-sref="active">
+        <span>BACK</span>
+      </h3>
+      <h3 class="LoginBtn btn" ui-sref="login" ui-sref="active" ng-if="!isLogined">
+        <span>Login</span>
+      </h3>
+      <h3 class="LoginBtn btn" ng-if="isLogined">
+      	<a ui-sref="upload({appKey : currentKey})">
+		      <span>UPDATE</span>
+		    </a>
+      </h3>
+    </div>
+  </md-toolbar>
+  <md-content flex>
+	  <div class="latest-app-boarder">
+	    <div class="app-content ios">
+	      <a ng-href="{{app.ios.filePath}}">
+	        <img ng-src="{{app.imgPath}}"/>
+	        <p class="app-name">{{app.name}}</p>
+	        <p class="app-version">{{app.ios.version}}</p>
+	        <p>(iOS)</p>
+	      </a>
+	    </div>
+
+	    <div class="app-content android">
+	      <a href="{{app.android.filePath}}">
+	        <img ng-src="{{app.imgPath}}"/>
+	        <p class="app-name">{{app.name}}</p>
+	        <p class="app-version">{{app.android.version}}</p>
+	        <p>(Android)</p>
+	      </a>
+	    </div>
+	  </div>
+
+	<div class="legacy-boarder">
+	  <div class="legacy-header">
+	  	<p>Legacy version</p>
+	  </div>
+	  <div class="legacy-link" ng-repeat="version in versions">
+			<p class="legacy-label" style="line-height: 40px;">{{version.version}} </p>
+			<a ng-href="itms-services://?action=download-manifest&url={{version.ios.filePath}}" >
+				<p class="legacy-btn">iOS</p>
+			</a>
+		  <a ng-href="{{version.android.filePath}}">
+				<p class="legacy-btn">Android</p>
+			</a>
+		</div>
+	</div>
+
+	<p style="margin:auto; width:95%; text-align: center;"><img style="width:90%;" ng-src="{{guideEn}}"></p><br />
+	<table style="margin:auto; width:95%;">
+	  <tr><td style="font-weight:bold;">Install Guide</td></tr>
+	  <tr><td>1. In iOS device please select from the icon application.</td></tr>
+	  <tr><td>2. iOS8 or higher requires enterprise app reliability verification.</td></tr>
+	  <tr><td>3. In Settings - General - Device Management menu, press the 'Trust' button on Samsung Techwin Co., Ltd.'. </td></tr>
+	</table><br/><br/>
+
+	<p style="margin:auto; width:95%; text-align: center;"><img style="width:90%;" ng-src="{{guideKo}}"/></p><br />
+	<table style="margin:auto; width:95%;">
+	  <tr><td style="font-weight:bold;">설치가이드</td></tr>
+	  <tr><td>1. iOS 단말기에서 앱 아이콘을 선택해 주세요.</td></tr>
+	  <tr><td>2. iOS8 이상의 버전에선 기업용 앱 신뢰성 확인이 필요합니다.</td></tr>
+	  <tr><td>3. 설정 - 일반 - 기기관리 메뉴에서 'Smasung Techwin Co., Ltd.를 신뢰함 버튼을 눌러주세요.' </td></tr>
+	</table>
+	</md-content>
+</div>

@@ -1,0 +1,135 @@
+<div id="designView" ng-init="DC.init()" ng-cloak>
+	<!-- <md-toolbar md-scroll-shrink ng-if="true">
+    <div class="md-toolbar-tools">
+      <h3>
+        <span></span>
+      </h3>
+    </div>
+  </md-toolbar> -->
+
+  <div class="designContainer">
+    <!-- <div id="menu" >
+      <img src="/images/menu.png" ng-click="toggleRight()"/>
+      <div class="md-ripple-container"></div>
+    </div> -->
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Design">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Design your workout today.</h1>
+          <div flex="100" flex-gt-sm="50" layout="column">
+            <!--
+              In IE, we cannot apply flex directly to <fieldset>
+              @see https://github.com/philipwalton/flexbugs#9-some-html-elements-cant-be-flex-containers
+            -->
+            <fieldset class="exerciseTheme" >
+              <legend>Select Exercise Type</legend>
+              <div layout="row" layout-wrap flex>
+                <div flex="50" ng-repeat="item in types">
+                  <md-checkbox ng-checked="exists(item, selectedType)" ng-click="selectType(item, selectedType)">
+                    {{ item.name }} <!-- <span ng-if="exists(item, selectedType)">selected</span> -->
+                  </md-checkbox>
+                </div>
+              
+                <div flex="100">
+                  <md-input-container>
+                    <label>새로운 운동 타입 명</label>
+                    <input ng-model="newExerciseType">
+                  </md-input-container>
+                  <md-button class="md-raised" ng-click="DC.addNewTheme()" flex="30"> 추가하기 </md-button>
+                </div>
+              </div>
+            </fieldset>
+
+            <br />
+            <br /> 
+
+            <fieldset class="exerciseTheme" ng-repeat="item in selectedType">
+              <legend> {{ item.name }} 선택</legend>
+              <div layout="row" layout-wrap flex>
+                <div flex="100" ng-repeat="item in item.exercises">
+                  <md-checkbox ng-checked="exists(item, selectedExercise)" ng-click="selectExercise(item, selectedExercise)">
+                    {{ item.name }}
+                  </md-checkbox>
+                </div>
+              </div>
+
+              <md-input-container>
+                <label>새로운 운동 명</label>
+                <input ng-model="newExercise[item.key]">
+              </md-input-container>
+
+              <md-button class="md-raised" ng-click="DC.addNewExercise(item.key)"> 추가하기 </md-button>
+            </fieldset>
+
+            <md-button class="md-raised md-primary startBtn" ng-click="DC.startExercise()"> 운동시작 </md-button>
+          </div>
+        </md-content>
+      </md-tab>
+
+
+
+
+
+
+
+      <md-tab label="Do">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Record your workouts.</h1>
+          
+          <fieldset class="exerciseTheme" ng-repeat="item in selectedType">
+              <legend> {{ item.name }} </legend>
+              <div layout-wrap flex ng-repeat="item in exercises[item.key]">
+                <div layout="row">
+                  <div flex="20">
+                    <p> {{ $index + 1 }} Set</p>
+                  </div>
+                  <div flex="40">
+                    <md-input-container class="md-icon-float md-block">
+                      <!-- Use floating label instead of placeholder -->
+                      <label>Kg</label>
+                      <input ng-model="user.name" type="text">
+                    </md-input-container>
+                  </div>
+                  <div flex="40">
+                    <md-input-container class="md-icon-float md-block">
+                      <!-- Use floating label instead of placeholder -->
+                      <label>ea</label>
+                      <input ng-model="user.name" type="text">
+                    </md-input-container>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </div>
+
+
+
+  <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+
+    <md-toolbar class="md-theme-light">
+      <h1 class="md-toolbar-tools">Extend</h1>
+    </md-toolbar>
+    <md-content ng-controller="RightCtrl" layout-padding>
+      <!-- <form>
+        <md-input-container>
+          <label for="testInput">Test input</label>
+          <input type="text" id="testInput"
+                 ng-model="data" md-autofocus>
+        </md-input-container>
+      </form> -->
+      <md-button ng-click="close()" class="md-primary">
+        InBody
+      </md-button>
+      <md-button ng-click="close()" class="md-primary">
+        Close
+      </md-button>
+    </md-content>
+
+  </md-sidenav>
+
+  </md-sidenav>
+</div>

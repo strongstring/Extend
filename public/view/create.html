@@ -1,0 +1,30 @@
+<div id="upload" ng-init="CC.init()" ng-cloak>
+	<md-toolbar md-scroll-shrink ng-if="true">
+    <div class="md-toolbar-tools">
+      <h3 class="backbtn btn" ui-sref="home" ui-sref="active">
+        <span>BACK</span>
+      </h3>
+    </div>
+  </md-toolbar>
+  <md-content flex>
+    <div>
+      <div class="inputContainer">
+        <md-input-container>
+          <label>App name</label>
+          <input ng-model="newApp.name" type="text">
+        </md-input-container>
+        <br />
+
+        <label class="image-label">App image</label> <br />
+        <img id="new-app-img-render" ng-src="{{newApp.imgPath}}">
+        <br />
+        <input ng-model="newApp.img" type="file" id="new-app-img" onchange="angular.element(this).scope().updadeImg(this)">
+
+        <br /><br />
+        <md-button md-no-ink class="md-primary" ng-click="CC.createApp()" ng-disabled="!(newApp.isReady && newApp.name.length > 0)">생성하기</md-button>
+      </div>
+      
+
+  	</md-content>
+  </div>
+</div>

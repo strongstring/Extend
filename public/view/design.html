@@ -1,0 +1,59 @@
+<div id="designView" ng-init="DC.init()" ng-cloak>
+  <div class="designContainer">
+    <md-toolbar md-scroll-shrink ng-if="true">
+      <div class="md-toolbar-tools">
+        <div id="menu" >
+          <img src="/images/menu.png" ng-click="toggleLeft()"/>
+          <div class="md-ripple-container"></div>
+        </div>
+        <h3 class="date">
+          <span>{{DC.getToday()}}</span>
+        </h3>
+        <h3 id="userName">
+          <span>{{userName}}</span>
+        </h3>
+      </div>
+    </md-toolbar>
+    <div flex="100" flex-gt-sm="50" layout="column">
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="{{typeValue.name}}" ng-repeat="(typeKey, typeValue) in types">
+          <md-content class="md-padding">
+            <md-list layout-padding>
+              <md-list-item class="md-1-line" ng-repeat="exercise in typeValue.exercises">
+                  <div class="md-list-item-text">
+                    <h3>{{exercise.name}}</h3>
+                  </div>
+              </md-list-item>
+              <md-list-item class="md-1-line addExercise" ng-click="DC.addExercise(typeKey)">
+                <div class="md-list-item-text"> 
+                  <h3>+ Add new Exercise</h3>
+                </div>
+              </md-list-item>
+            </md-list>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </div>
+  </div>
+
+  <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
+    <md-toolbar class="md-theme-light">
+      <h1 class="md-toolbar-tools">Extend</h1>
+    </md-toolbar>
+    <md-content ng-controller="LeftCtrl" layout-padding>
+      <!-- <form>
+        <md-input-container>
+          <label for="testInput">Test input</label>
+          <input type="text" id="testInput"
+                 ng-model="data" md-autofocus>
+        </md-input-container>
+      </form> -->
+      <md-button ng-click="close()" class="md-primary">
+        InBody
+      </md-button>
+      <md-button ng-click="close()" class="md-primary">
+        Close
+      </md-button>
+    </md-content>
+  </md-sidenav>
+</div>

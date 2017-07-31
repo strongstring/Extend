@@ -1,0 +1,44 @@
+<div id="loginView" ng-init="LC.init()" ng-cloak>
+	<md-toolbar md-scroll-shrink ng-if="true">
+    <div class="md-toolbar-tools">
+      <!-- <h3 class="backbtn btn" ui-sref="home" ui-sref="active">
+        <span>BACK</span>
+      </h3> -->
+      <h3>
+        <span>EXTEND:: Login</span>
+      </h3>
+    </div>
+  </md-toolbar>
+  <div ng-if="isLogined && isSignUp" class="loginContainer">
+    <h3> 이미 로그인 되어있습니다. </h3>
+    <div class="btn" ng-click="LC.logout()"> 
+      <p>로그아웃</p>
+    </div>
+  </div>
+  <div ng-if="isLogined && !isSignUp" class="loginContainer">
+    <md-input-container>
+      <label>Nickname</label>
+      <input ng-model="user.nickname">
+    </md-input-container>
+
+     <md-input-container>
+      <label>Age</label>
+      <input ng-model="user.age" type="number" placeholder="30">
+    </md-input-container>
+
+     <md-input-container>
+      <label>Height</label>
+      <input ng-model="user.height" type="number" placeholder="175">
+    </md-input-container>
+
+    <div class="btn" ng-click="LC.signup()">
+      <p>Sign Up</p>
+    </div>
+  </div>
+  <div ng-if="!isLogined" class="loginContainer">
+    <div class="loginBtn" ng-click="LC.login()">
+      <div class="google-icon" ></div>
+      <p>Google+</p>
+    </div>
+  </div>
+</div>
